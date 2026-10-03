@@ -28,6 +28,9 @@ L'adresse d'un fichier ne bouge donc jamais, par exemple :
 3. Ici, onglet **Releases**, ouvrir la release de l'app, puis **Edit**.
 4. Supprimer l'ancien fichier (croix), glisser le nouveau, et écrire dans la
    description la version et la date. Enregistrer avec **Update release**.
+5. **Prévenir le site** (règle DG 2026-10-03) : mettre à jour le tableau « Les APK
+   sont en ligne » de `woyo/docs/REPONSES-API-E.md` (taille, version, date). La
+   page de téléchargement de monwoyo.app s'en sert.
 
 Seuls des APK **signés en release** venant de Codemagic sont publiés ici,
 jamais un build de debug.
