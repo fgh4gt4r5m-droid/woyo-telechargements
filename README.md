@@ -22,8 +22,12 @@ L'adresse d'un fichier ne bouge donc jamais, par exemple :
 
 ## Publier une nouvelle version (DG ou équipe)
 
-1. Dans Codemagic, télécharger l'APK du build (WOYO Pro et Driver :
-   `app-arm64-v8a-release.apk` et `app-armeabi-v7a-release.apk`).
+1. Construire les deux APK en local, signés avec la clé de production :
+   `flutter build apk --release --split-per-abi -P force-version-code-ignoring-abi=true --target-platform android-arm,android-arm64`
+   (`app-arm64-v8a-release.apk` et `app-armeabi-v7a-release.apk`, même numéro de
+   version, toujours plus haut que celui en ligne). Vérifier chacun avec
+   `apksigner verify --print-certs` : le certificat doit être celui de l'APK
+   déjà publié, sinon il ne s'installera pas par-dessus.
 2. Le **renommer** comme dans le tableau : le lien du site en dépend.
 3. Ici, onglet **Releases**, ouvrir la release de l'app, puis **Edit**.
 4. Supprimer l'ancien fichier (croix), glisser le nouveau, et écrire dans la
@@ -32,5 +36,7 @@ L'adresse d'un fichier ne bouge donc jamais, par exemple :
    sont en ligne » de `woyo/docs/REPONSES-API-E.md` (taille, version, date). La
    page de téléchargement de monwoyo.app s'en sert.
 
-Seuls des APK **signés en release** venant de Codemagic sont publiés ici,
-jamais un build de debug.
+Seuls des APK **construits en local, signés en release avec la clé de
+production et vérifiés avec `apksigner`** sont publiés ici, jamais un build de
+debug. L'empreinte SHA-256 de chaque fichier est écrite dans la description de
+sa release.
